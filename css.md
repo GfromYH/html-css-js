@@ -18,7 +18,7 @@
 
   > a. 浏览器默认的margin和padding不同
   >
-  > b. IE6双边距bug display：inline
+  > b. IE6双边距bug display：inline，造成原因：1.块元素 2.浮动 3.设置外边距
   >
   > c. 在ie6，ie7中元素高度超出自己设置高度。原因是IE8以前的浏览器中会给元素设置默认的行高的高度导致的
   >
