@@ -270,3 +270,43 @@ let newArr=arr.filter((ele,index,self)=>{
 
 ~~~
 
+
+
+### 扁平化
+
+也是利用递归，拆分数组
+
+~~~javascript
+    function flatArr(array) {
+        let result=[]
+        for (let i = 0,len=array.length; i <len ; i++) {
+            if (Array.isArray(array[i])){
+                result=result.concat(flatArr(array[i]))
+            }
+            result.push(array[i])
+        }
+        return result
+    }
+    let array=[1,[2,[3,4]]]
+    console.log(flatArr(array));
+~~~
+
+
+
+### 柯里化
+
+~~~javascript
+function add(num){
+    let sum=0;
+    sum+=num
+    return function typeofArgs(numb){
+        if(arguements.length===0){
+            return sum
+        }
+        sum+=numb
+        return typeofArgs
+    }
+}
+console.log(add(1)(3)(3)());
+~~~
+
