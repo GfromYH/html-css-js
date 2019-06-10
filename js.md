@@ -132,3 +132,141 @@ Function.prototype.bind2=function(context){
 }
 ~~~
 
+
+
+### 重写new
+
+
+
+1. 创建一个空对象
+2. 将空对象的原型指向与目标构造函数的原型
+
+
+
+~~~javascript
+function objectFactory(){
+        let obj={}
+        //取出第一个参数也就是构造函数
+         Constructor=[].shift.call(arguments)
+        //将空对象的原型指向与目标构造函数的原型
+        obj.__proto__=Constructor.prototype
+        //改变this指向，并付给参数，由于arguments被shift一个参数所以剩下的即使需要的
+        let ret=Constructor.apply(obj,arguments)
+        return typeof ret==='object'? ret:obj //判断返回的始终是一个object对象
+}
+~~~
+
+
+
+### 浅拷贝与深拷贝
+
+浅拷贝与深拷贝的区别，简单来说A拷贝了B，A中的值变化了，B也跟着变化，这叫浅拷贝，深拷贝则是A中变化了，B的值不改变。也可以将是浅拷贝+递归实现深拷贝
+
+
+
++ 浅拷贝
+
+~~~javascript
+function lowClone(obj){
+    if(typeof obj!=='object'){
+        return
+    }
+    let newObj=obj instanceof Array?[]:{}
+    for(key in obj){
+        if(obj.hasOwnProperty(key))
+            newObj[key]=obj[key]
+    }
+    return newObj
+}
+~~~
+
+
+
++ 深拷贝
+
+~~~javascript
+function deepClone(obj){
+    if(typeof obj!=='object'){
+        return
+    }
+    let newObj=obj instanceof Array?[]:{}
+    for(key in obj){
+        if(obj.hasOwnProperty(key))
+            newObj[key]=typeof obj[key] ==='object' ?deepClone(obj[key]):obj[key]
+    }
+    return newObj
+}
+~~~
+
+
+
+### 去重
+
+我觉得这个可能是常考到的一种类型
+
+
+
+昨天翻阅了MDN发现reduce也能进行去重
+
+这里就摘录一下reduce去重的方法
+
++ reduce
+
+~~~javascript
+let arr=[1,2,3,4,5,2,1,4,21,4,233,1,2,1]
+let newArr=arr.sort((a,b)=>a-b).reduce((acc,cur)=>{
+    if(acc.length===0||acc[acc.length-1]!==cur){
+        acc.push(cur)
+    }
+},[])
+console.log(newArr) 就能去重了
+
+~~~
+
+
+
++ filter
+
+~~~javascript
+let arr=[1,2,3,4,5,2,1,4,21,4,233,1,2,1]
+let newArr=arr.filter((ele,index,self)=>{
+    return self.indexOf(ele)===index
+})
+~~~
+
++ indexOf
+
+~~~javascript
+    function unique(array) {
+        let res=[]
+        for (let i = 0,arrLen=array.length; i <arrLen ; i++) {
+            if (res.indexOf(array[i]) === -1) {
+                res.push(array[i])
+            }
+        }
+        return res
+    }
+~~~
+
++ 原始方法
+
+~~~javascript
+ function unique(array) {
+        var res = [];
+        for (var i = 0, arrayLen = array.length; i < arrayLen; i++) {
+            for (var j = 0, resLen = res.length; j < resLen; j++ ) {
+                if (array[i] === res[j]) {
+                    break;
+                }
+
+            }
+            console.log("j=" + j)
+            if (j === resLen) {
+                res.push(array[i])
+            }
+        }
+        return res;
+    }
+
+~~~
+
