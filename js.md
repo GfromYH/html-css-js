@@ -269,6 +269,7 @@ let newArr=arr.filter((ele,index,self)=>{
     }
 
 ~~~
++ Set方法也能去重
 
 
 
