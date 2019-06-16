@@ -76,7 +76,8 @@ Function.prototype.call2=function(context){
         args.push(arguements[i])
     }
     let result=context.fn(...args)
-    r
+    delete context.fn;
+    return result
     
 }
 ~~~
@@ -96,12 +97,15 @@ Function.prototype.apply2=function(context,arr){
     let result
     if(!arr){
         result = context.fn()
+    }else{
+        let args=[]
+        for(let i=0;i<arr.length;i++){
+            args.push(arr[i])
+        }
+        let result=context.fn(...args)
     }
-    let args=[]
-    for(let i=0;i<arr.length;i++){
-        args.push(arr[i])
-    }
-    let result=context.fn(...args)
+    
+    delete context.fn;
     return result
     
 }
