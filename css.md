@@ -37,6 +37,36 @@
   >
   > 但相对的只是HTML根元素。
 + 水平垂直居中
-~~~javascript
+> + 行内元素
+>
+>   ```
+>   text-align: center;
+>   vertical-align: middle;
+>   ```
+>
+> + 块级元素
+>
+>   + ```
+>     子类绝对定位，父类相对定位
+>     left：50%
+>     top：50%
+>     如果定义了宽度与高度
+>     那么
+>     margin-top与margin-left都为-宽或高/2
+>     如果未定义宽与高
+>     那么
+>     translate：translate（-50%，-50%）
+>     ```
+>
+> + 浮动
+>
+>   + ```
+>     //父类定义display：flex 子类水平垂直居中
+>     //水平居中
+>     justify-content: center;
+>     //单行垂直居中
+>     align-items: center;
+>     //多行垂直居中
+>     align-content: center;
+>     ```
 
-~~~
