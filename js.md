@@ -102,7 +102,7 @@ Function.prototype.apply2=function(context,arr){
         for(let i=0;i<arr.length;i++){
             args.push(arr[i])
         }
-        let result=context.fn(...args)
+        result=context.fn(...args)
     }
     
     delete context.fn;
@@ -200,6 +200,12 @@ function deepClone(obj){
     }
     return newObj
 }
+~~~
+
+还有一种比较快速的
+
+~~~javascript
+JSON.parse(JSON.stringfy(obj))
 ~~~
 
 
