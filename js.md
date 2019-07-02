@@ -72,8 +72,8 @@ Function.prototype.call2=function(context){
     let context=context||window
     context.fn=this
     let args=[]
-    for(let i=1,len=arguements.length;i<len;i++){
-        args.push(arguements[i])
+    for(let i=1,len=arguments.length;i<len;i++){
+        args.push(arguments[i])
     }
     let result=context.fn(...args)
     delete context.fn;
@@ -123,10 +123,10 @@ bind返回的是一个函数
 Function.prototype.bind2=function(context){
     let self=this;
     //复制bind第二个到最后的参数
-    let args=Array.prototype.slice.call(arguements,1);
+    let args=Array.prototype.slice.call(arguments,1);
     let fbound=function(){
         //获取bind后返回的参数
-        let bindArgs=Array.prototype.slice.call(arguements)
+        let bindArgs=Array.prototype.slice.call(arguments)
         //如果bind返回的是构造函数 那么根据下面改变它的原型指向 则返回true
         // 当作为普通函数时，this 指向 window，self 指向绑定函数，此时结果为 false，当结果为 false 的时候，this 指向绑定的 context。
         self.apply(this instanceof self ? this : context, args.concat(bindArgs));
@@ -311,7 +311,7 @@ function add(num){
     let sum=0;
     sum+=num
     return function typeofArgs(numb){
-        if(arguements.length===0){
+        if(arguments.length===0){
             return sum
         }
         sum+=numb
