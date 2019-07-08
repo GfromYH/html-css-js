@@ -17,8 +17,7 @@ function debounce(fn){
         //进入函数前先清除定时器
         clearTimeOut(timer)
         timer= setTimeout(()=>{
-            fn.call(this,arguements)
-            
+            fn.call(this,arguments) 
         },1000)
     }
 }
@@ -47,7 +46,7 @@ function throttle(fn){
        //避免重复触发
        canrun=false
        setTimeout(()=>{
-           fn.call(this,arguements)
+           fn.call(this,arguments)
            canrun=true
        },1000
    }
@@ -384,8 +383,7 @@ SSL协议是通过非对称密钥机制(非对称加密)保证双方身份认证
 >
 > 另外一个点需要重点说明的是，密钥k的长度对解密破解的难度有很重大的影响，k的长度越长，对应的密码空间就越大，遭到暴力破解或者词典破解的难度就更大，就更加安全。
 >
->
-> --------------------- 
+> ---------------------
 > 作者：zxcodestudy 
 > 来源：CSDN 
 > 原文：https://blog.csdn.net/qq_16681169/article/details/50933958 
