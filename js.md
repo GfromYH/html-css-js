@@ -15,7 +15,7 @@ function debounce(fn){
     let timer=null
     return function(){
         //进入函数前先清除定时器
-        clearTimeOut(timer)
+        clearTimeout(timer)
         timer= setTimeout(()=>{
             fn.call(this,arguments) 
         },1000)
